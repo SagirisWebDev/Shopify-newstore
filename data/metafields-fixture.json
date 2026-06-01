@@ -1,0 +1,30 @@
+[
+  {
+    "handle": "ethiopia-yirgacheffe-natural",
+    "metafields": {
+      "origin_country": "Ethiopia",
+      "origin_region": "Yirgacheffe",
+      "producer_farm_name": "Various smallholder farms",
+      "varietal": "Heirloom",
+      "altitude": "1800–2200 masl",
+      "process": "natural",
+      "roast_level": "light",
+      "roast_date": "2026-05-28",
+      "tasting_notes": ["blueberry", "jasmine", "dark chocolate"],
+      "brew_recommendations": [
+        {
+          "method": "Pour Over",
+          "description": "Medium-fine grind, 94°C, 1:15 coffee-to-water ratio. Pour in slow circles over 3 minutes."
+        },
+        {
+          "method": "French Press",
+          "description": "Coarse grind, 94°C, 1:15 ratio. Steep 4 minutes, press slowly."
+        },
+        {
+          "method": "Espresso",
+          "description": "Fine grind, 9 bar, 25–30 second shot. Suits the natural process sweetness."
+        }
+      ]
+    }
+  }
+]
