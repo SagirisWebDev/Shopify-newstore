@@ -28,6 +28,18 @@ The made-up brand the Demo Store represents. **Common Roast** — an approachabl
 
 - "customer" is overloaded — in Shopify's own admin UI it means **Shopper**, but in freelance/agency parlance it often means **Client**. Resolved: always use **Shopper** or **Client** explicitly in this repo's docs and code; never "customer".
 
+## Subscription configuration (Recharge)
+
+Recharge is installed on the dev store. Selling plans are attached to bean products.
+
+| Setting | Value |
+|---|---|
+| Cadence | Monthly (every 1 month) |
+| Subscription discount | 25% off one-time price |
+| Purchase options | One-time purchase and subscribe |
+
+One-time purchase is always available alongside the subscription option. The PDP toggle lets Shoppers choose between the two.
+
 ## Coffee metafield schema
 
 All bean products carry these metafield definitions. Namespace: `coffee`. Access in Liquid as `product.metafields.coffee.<key>`.
