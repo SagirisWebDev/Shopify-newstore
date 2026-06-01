@@ -1,0 +1,91 @@
+{% comment %}
+  Renders a coffee product card. Single source of truth for bean product cards
+  across the collection grid, search results, and related-product strips.
+
+  Accepts:
+  - card_product: {Object} Product Liquid object
+  - lazy_load: {Boolean} Lazy-load the product image. Default: true
+  - skip_styles: {Boolean} Skip stylesheet tag (set true after first card in a loop). Default: false
+
+  Usage:
+  {% render 'coffee-card', card_product: product, lazy_load: true %}
+{% endcomment %}
+
+{%- unless skip_styles -%}
+  {{ 'coffee-card.css' | asset_url | stylesheet_tag }}
+{%- endunless -%}
+
+{%- if card_product and card_product != empty -%}
+  {%- liquid
+    assign coffee = card_product.metafields.coffee
+    assign origin_country = coffee.origin_country.value
+    assign origin_region = coffee.origin_region.value
+    assign process = coffee.process.value
+    assign roast_level = coffee.roast_level.value
+    assign tasting_notes = coffee.tasting_notes.value
+    assign has_chips = false
+    if origin_country or process or roast_level
+      assign has_chips = true
+    endif
+  -%}
+
+  <div class="coffee-card card-wrapper product-card-wrapper">
+    <a href="{{ card_product.url }}" class="coffee-card__link full-unstyled-link">
+      {%- if card_product.featured_media -%}
+        <div class="coffee-card__media ratio" style="--ratio-percent: 100%;">
+          <img
+            srcset="{{ card_product.featured_media | image_url: width: 300 }} 300w,
+                    {{ card_product.featured_media | image_url: width: 600 }} 600w"
+            src="{{ card_product.featured_media | image_url: width: 600 }}"
+            alt="{{ card_product.featured_media.alt | default: card_product.title | escape }}"
+            width="600"
+            height="{{ 600 | divided_by: card_product.featured_media.aspect_ratio | ceil }}"
+            loading="{%- if lazy_load == false -%}eager{%- else -%}lazy{%- endif -%}"
+          >
+        </div>
+      {%- endif -%}
+
+      <div class="coffee-card__info">
+        <h3 class="coffee-card__title">{{ card_product.title | escape }}</h3>
+
+        <div class="coffee-card__price">
+          {%- render 'price', product: card_product, use_variant: false -%}
+        </div>
+
+        {%- if has_chips -%}
+          <ul class="coffee-card__chips" aria-label="Coffee attributes">
+            {%- if origin_country -%}
+              <li class="coffee-card__chip coffee-card__chip--origin">
+                {{- origin_country | escape -}}
+                {%- if origin_region -%},&nbsp;{{ origin_region | escape }}{%- endif -%}
+              </li>
+            {%- endif -%}
+            {%- if process -%}
+              <li class="coffee-card__chip coffee-card__chip--process">{{ process | capitalize }}</li>
+            {%- endif -%}
+            {%- if roast_level -%}
+              <li class="coffee-card__chip coffee-card__chip--roast">{{ roast_level | capitalize }} Roast</li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+
+        {%- if tasting_notes and tasting_notes.size > 0 -%}
+          <p class="coffee-card__tasting-notes">{{ tasting_notes | join: ' · ' }}</p>
+        {%- endif -%}
+      </div>
+    </a>
+  </div>
+
+{%- else -%}
+
+  <div class="coffee-card coffee-card--placeholder">
+    <div class="coffee-card__media ratio" style="--ratio-percent: 100%;">
+      {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+    <div class="coffee-card__info">
+      <h3 class="coffee-card__title">{{ 'onboarding.product_title' | t }}</h3>
+      <div class="coffee-card__price">{{ 'onboarding.product_price' | t }}</div>
+    </div>
+  </div>
+
+{%- endif -%}

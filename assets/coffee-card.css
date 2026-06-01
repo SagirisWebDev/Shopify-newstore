@@ -1,0 +1,64 @@
+.coffee-card {
+  position: relative;
+  height: 100%;
+}
+
+.coffee-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.coffee-card__media {
+  overflow: hidden;
+  border-radius: var(--media-radius, 0);
+}
+
+.coffee-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.coffee-card__info {
+  padding: 1.2rem 0 0.8rem;
+  flex: 1;
+}
+
+.coffee-card__title {
+  font-size: 1.4rem;
+  margin: 0 0 0.4rem;
+  font-weight: 600;
+}
+
+.coffee-card__price {
+  margin-bottom: 0.8rem;
+}
+
+.coffee-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0 0 0.8rem;
+  padding: 0;
+}
+
+.coffee-card__chip {
+  font-size: 1.1rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 2rem;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  opacity: 0.75;
+}
+
+.coffee-card__tasting-notes {
+  font-size: 1.2rem;
+  margin: 0;
+  opacity: 0.65;
+  font-style: italic;
+}
