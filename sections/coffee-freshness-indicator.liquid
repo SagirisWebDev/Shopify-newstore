@@ -1,0 +1,96 @@
+{{ 'section-coffee-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign roast_date = product.metafields.coffee.roast_date.value -%}
+
+{%- if roast_date != blank -%}
+  {%- liquid
+    assign roast_seconds = roast_date | date: '%s' | plus: 0
+    assign today_seconds = 'now' | date: '%s' | plus: 0
+    assign days_since_roast = today_seconds | minus: roast_seconds | divided_by: 86400
+
+    if days_since_roast <= 7
+      assign freshness_label = 'Just Roasted'
+      assign freshness_modifier = 'just-roasted'
+    elsif days_since_roast <= 21
+      assign freshness_label = 'Peak'
+      assign freshness_modifier = 'peak'
+    else
+      assign freshness_label = 'Past Peak'
+      assign freshness_modifier = 'past-peak'
+    endif
+
+    if days_since_roast == 1
+      assign days_label = '1 day since roast'
+    else
+      assign days_label = days_since_roast | append: ' days since roast'
+    endif
+  -%}
+
+  <div class="coffee-freshness page-width section-{{ section.id }}-padding">
+    <h2 class="coffee-freshness__heading h3">{{ section.settings.heading | escape }}</h2>
+    <div
+      class="coffee-freshness__indicator coffee-freshness__indicator--{{ freshness_modifier }}"
+      role="status"
+      aria-label="{{ freshness_label }}: {{ days_label }}"
+    >
+      <span class="coffee-freshness__label">{{ freshness_label }}</span>
+      <span class="coffee-freshness__days">{{ days_label }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Coffee: Freshness Indicator",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Freshness"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coffee: Freshness Indicator"
+    }
+  ]
+}
+{% endschema %}

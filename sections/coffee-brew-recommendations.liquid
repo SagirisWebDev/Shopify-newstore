@@ -1,0 +1,73 @@
+{{ 'section-coffee-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign brew_recs = product.metafields.coffee.brew_recommendations.value -%}
+
+{%- if brew_recs != blank -%}
+  <div class="coffee-brew-recs page-width section-{{ section.id }}-padding">
+    <h2 class="coffee-brew-recs__heading h3">{{ section.settings.heading | escape }}</h2>
+    <ul class="coffee-brew-recs__list list-unstyled" role="list">
+      {%- for rec in brew_recs -%}
+        <li class="coffee-brew-recs__item">
+          <p class="coffee-brew-recs__item-method h4">{{ rec.method | escape }}</p>
+          <p class="coffee-brew-recs__item-description">{{ rec.description | escape }}</p>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Coffee: Brew Recommendations",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Brew Recommendations"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coffee: Brew Recommendations"
+    }
+  ]
+}
+{% endschema %}

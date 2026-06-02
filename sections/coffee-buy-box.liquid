@@ -1,0 +1,186 @@
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+{{ 'section-coffee-pdp.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+<product-info
+  id="MainProduct-{{ section.id }}"
+  class="page-width section-{{ section.id }}-padding"
+  data-section="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-update-url="true"
+  data-url="{{ product.url }}"
+>
+  <div class="product__info-container">
+    <div class="product__title">
+      <h1>{{ product.title | escape }}</h1>
+    </div>
+
+    <div id="price-{{ section.id }}" role="status">
+      {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
+    </div>
+
+    {%- unless product.has_only_default_variant -%}
+      <variant-selects
+        id="variant-selects-{{ section.id }}"
+        data-section="{{ section.id }}"
+      >
+        {%- for option in product.options_with_values -%}
+          {%- assign is_grind_size = false -%}
+          {%- if option.name == 'Grind Size' -%}
+            {%- assign is_grind_size = true -%}
+          {%- endif -%}
+
+          <div
+            class="coffee-buy-box__option-group{% if is_grind_size %} coffee-buy-box__grind-size-group{% endif %}"
+            {% if is_grind_size %}data-coffee-grind-size-group="{{ section.id }}" hidden{% endif %}
+          >
+            <fieldset class="js product-form__input product-form__input--pill">
+              <legend class="form__label">{{ option.name }}</legend>
+              {%- for value in option.values -%}
+                {%- assign input_id = 'variant-' | append: section.id | append: '-' | append: option.position | append: '-' | append: forloop.index0 -%}
+                <input
+                  type="radio"
+                  id="{{ input_id }}"
+                  name="options[{{ option.name | escape }}]"
+                  value="{{ value | escape }}"
+                  form="{{ product_form_id }}"
+                  {% if option.selected_value == value %}checked{% endif %}
+                  {% if option.name == 'Grind' %}data-coffee-grind-option="{{ section.id }}"{% endif %}
+                >
+                <label for="{{ input_id }}">{{ value | escape }}</label>
+              {%- endfor -%}
+            </fieldset>
+          </div>
+        {%- endfor -%}
+
+        <script type="application/json" data-selected-variant>
+          {{ product.selected_or_first_available_variant | json }}
+        </script>
+      </variant-selects>
+    {%- endunless -%}
+
+    <product-form
+      class="product-form"
+      data-hide-errors="false"
+      data-section-id="{{ section.id }}"
+    >
+      <div class="product-form__error-message-wrapper" role="alert" hidden>
+        <span class="svg-wrapper">{{- 'icon-error.svg' | inline_asset_content -}}</span>
+        <span class="product-form__error-message"></span>
+      </div>
+
+      {%- form 'product',
+        product,
+        id: product_form_id,
+        class: 'form',
+        novalidate: 'novalidate',
+        data-type: 'add-to-cart-form'
+      -%}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+          {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+          class="product-variant-id"
+        >
+        <div class="product-form__buttons">
+          <button
+            type="submit"
+            name="add"
+            class="product-form__submit button button--full-width button--primary"
+            {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+          >
+            <span>
+              {%- if product.selected_or_first_available_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </span>
+            <div class="loading__spinner hidden">
+              {%- render 'loading-spinner' -%}
+            </div>
+          </button>
+        </div>
+      {%- endform -%}
+    </product-form>
+  </div>
+</product-info>
+
+<script>
+  (function () {
+    var sectionId = '{{ section.id }}';
+    var grindSizeGroup = document.querySelector('[data-coffee-grind-size-group="' + sectionId + '"]');
+    if (!grindSizeGroup) return;
+
+    function getSelectedGrind() {
+      var checked = document.querySelector('[data-coffee-grind-option="' + sectionId + '"]:checked');
+      return checked ? checked.value : null;
+    }
+
+    function updateGrindSizeVisibility() {
+      var val = getSelectedGrind();
+      if (val !== null) grindSizeGroup.hidden = val !== 'Ground';
+    }
+
+    updateGrindSizeVisibility();
+    var variantSelects = document.getElementById('variant-selects-' + sectionId);
+    if (variantSelects) variantSelects.addEventListener('change', updateGrindSizeVisibility);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Coffee: Buy Box",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coffee: Buy Box"
+    }
+  ]
+}
+{% endschema %}

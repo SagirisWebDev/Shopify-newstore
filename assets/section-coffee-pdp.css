@@ -1,0 +1,95 @@
+/* Tasting notes */
+.coffee-tasting-notes__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 0;
+}
+
+.coffee-tasting-notes__tag {
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border: 0.1rem solid rgb(var(--color-foreground));
+  border-radius: 3.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.06rem;
+  text-transform: capitalize;
+}
+
+/* Brew recommendations */
+.coffee-brew-recs__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 2.4rem;
+}
+
+@media screen and (min-width: 750px) {
+  .coffee-brew-recs__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.coffee-brew-recs__item-method {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+/* Origin story */
+.coffee-origin__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.coffee-origin__table th,
+.coffee-origin__table td {
+  padding: 0.8rem 0;
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  text-align: left;
+}
+
+.coffee-origin__table th {
+  font-weight: 600;
+  width: 40%;
+  padding-right: 1.6rem;
+}
+
+/* Freshness indicator */
+.coffee-freshness__indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 2rem;
+  border: 0.1rem solid rgb(var(--color-foreground));
+  border-radius: 0.4rem;
+}
+
+.coffee-freshness__indicator--just-roasted {
+  background: rgba(62, 214, 96, 0.1);
+  border-color: rgb(62, 214, 96);
+}
+
+.coffee-freshness__indicator--peak {
+  background: rgba(238, 148, 65, 0.1);
+  border-color: rgb(238, 148, 65);
+}
+
+.coffee-freshness__indicator--past-peak {
+  background: rgba(200, 200, 200, 0.1);
+  border-color: rgb(200, 200, 200);
+}
+
+.coffee-freshness__label {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.coffee-freshness__days {
+  font-size: 1.3rem;
+  opacity: 0.8;
+}
+
+/* Buy box conditional grind size */
+.coffee-buy-box__grind-size-group[hidden] {
+  display: none;
+}

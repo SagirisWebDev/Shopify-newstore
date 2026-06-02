@@ -1,0 +1,124 @@
+{{ 'section-coffee-pdp.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign origin_country = product.metafields.coffee.origin_country
+  assign origin_region = product.metafields.coffee.origin_region
+  assign producer = product.metafields.coffee.producer_farm_name
+  assign varietal = product.metafields.coffee.varietal
+  assign altitude = product.metafields.coffee.altitude
+  assign process = product.metafields.coffee.process
+  assign roast_level = product.metafields.coffee.roast_level
+
+  assign has_origin_data = false
+  if origin_country != blank or origin_region != blank or producer != blank or varietal != blank or altitude != blank or process != blank or roast_level != blank
+    assign has_origin_data = true
+  endif
+-%}
+
+{%- if has_origin_data -%}
+  <div class="coffee-origin page-width section-{{ section.id }}-padding">
+    <h2 class="coffee-origin__heading h3">{{ section.settings.heading | escape }}</h2>
+    <table class="coffee-origin__table">
+      <tbody>
+        {%- if origin_country != blank -%}
+          <tr>
+            <th scope="row">Country</th>
+            <td>{{ origin_country }}</td>
+          </tr>
+        {%- endif -%}
+        {%- if origin_region != blank -%}
+          <tr>
+            <th scope="row">Region</th>
+            <td>{{ origin_region }}</td>
+          </tr>
+        {%- endif -%}
+        {%- if producer != blank -%}
+          <tr>
+            <th scope="row">Producer / Farm</th>
+            <td>{{ producer }}</td>
+          </tr>
+        {%- endif -%}
+        {%- if varietal != blank -%}
+          <tr>
+            <th scope="row">Varietal</th>
+            <td>{{ varietal }}</td>
+          </tr>
+        {%- endif -%}
+        {%- if altitude != blank -%}
+          <tr>
+            <th scope="row">Altitude</th>
+            <td>{{ altitude }}</td>
+          </tr>
+        {%- endif -%}
+        {%- if process != blank -%}
+          <tr>
+            <th scope="row">Process</th>
+            <td>{{ process | capitalize }}</td>
+          </tr>
+        {%- endif -%}
+        {%- if roast_level != blank -%}
+          <tr>
+            <th scope="row">Roast Level</th>
+            <td>{{ roast_level | capitalize }}</td>
+          </tr>
+        {%- endif -%}
+      </tbody>
+    </table>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Coffee: Origin Story",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Origin"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coffee: Origin Story"
+    }
+  ]
+}
+{% endschema %}
