@@ -431,6 +431,8 @@ describe('AC7 — Recharge internals are encapsulated in subscription-toggle.js'
       'sections/cart-notification-product.liquid',
       'sections/coffee-buy-box.liquid',
       'snippets/cart-drawer.liquid',
+      // Account page: portal entry point link + recharge.css stylesheet tag — display/navigation only, no config data
+      'sections/main-account.liquid',
     ]);
 
     const dirs = ['sections', 'snippets'];

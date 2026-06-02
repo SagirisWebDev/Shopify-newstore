@@ -651,6 +651,22 @@
   font-size: 1.3rem;
 }
 
+/* Subscription portal entry point */
+.account-subscription-portal {
+  box-shadow: 0 0 0 0.1rem rgba(var(--color-foreground), 0.08);
+  padding: 2.4rem;
+  margin-bottom: 4rem;
+}
+
+.account-subscription-portal h2 {
+  margin-top: 0;
+}
+
+.account-subscription-portal p {
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
+}
+
 /* Addresses */
 .addresses li > button {
   margin-left: 0.5rem;
