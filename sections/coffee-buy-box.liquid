@@ -5,6 +5,7 @@
 
 <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'subscription-toggle.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -79,6 +80,80 @@
       </variant-selects>
     {%- endunless -%}
 
+    {%- if product.selling_plan_groups.size > 0 -%}
+      {%- assign subscription_discount_percent = 0 -%}
+      {%- assign all_selling_plans = '' -%}
+      {%- for group in product.selling_plan_groups -%}
+        {%- for plan in group.selling_plans -%}
+          {%- if plan.price_adjustments.size > 0 and subscription_discount_percent == 0 -%}
+            {%- assign _adj = plan.price_adjustments.first -%}
+            {%- if _adj.value_type == 'percentage' -%}
+              {%- assign subscription_discount_percent = _adj.value -%}
+            {%- endif -%}
+          {%- endif -%}
+          {%- capture plan_json -%}{"id":"{{ plan.id }}","name":{{ plan.name | json }}}{%- endcapture -%}
+          {%- if all_selling_plans == '' -%}
+            {%- assign all_selling_plans = plan_json -%}
+          {%- else -%}
+            {%- assign all_selling_plans = all_selling_plans | append: ',' | append: plan_json -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+
+      <subscription-toggle
+        data-section-id="{{ section.id }}"
+        data-form-id="{{ product_form_id }}"
+        data-discount-percent="{{ subscription_discount_percent }}"
+        data-selling-plans='[{{ all_selling_plans }}]'
+      >
+        <fieldset class="subscription-toggle__purchase-option" data-subscription-purchase-option>
+          <legend class="visually-hidden">Purchase option</legend>
+          <input
+            type="radio"
+            id="purchase-onetime-{{ section.id }}"
+            name="purchase_option"
+            value="onetime"
+            checked
+            data-subscription-purchase-option-input
+          >
+          <label for="purchase-onetime-{{ section.id }}">One-time purchase</label>
+          <input
+            type="radio"
+            id="purchase-subscribe-{{ section.id }}"
+            name="purchase_option"
+            value="subscribe"
+            data-subscription-purchase-option-input
+          >
+          <label for="purchase-subscribe-{{ section.id }}">Subscribe &amp; save</label>
+        </fieldset>
+
+        <div class="subscription-toggle__cadence" data-subscription-cadence hidden>
+          <fieldset>
+            <legend class="form__label">Delivery cadence</legend>
+            {%- assign first_cadence = true -%}
+            {%- for group in product.selling_plan_groups -%}
+              {%- for plan in group.selling_plans -%}
+                {%- assign cadence_id = 'cadence-' | append: plan.id | append: '-' | append: section.id -%}
+                <input
+                  type="radio"
+                  id="{{ cadence_id }}"
+                  name="selling_plan_choice"
+                  value="{{ plan.id }}"
+                  {% if first_cadence %}checked{%- assign first_cadence = false -%}{% endif %}
+                  data-subscription-cadence-input
+                >
+                <label for="{{ cadence_id }}">{{ plan.name | escape }}</label>
+              {%- endfor -%}
+            {%- endfor -%}
+          </fieldset>
+        </div>
+
+        <p class="subscription-toggle__discount" data-subscription-discount hidden>
+          Save <span data-subscription-discount-percent>{{ subscription_discount_percent }}</span>% with subscribe &amp; save
+        </p>
+      </subscription-toggle>
+    {%- endif -%}
+
     <product-form
       class="product-form"
       data-hide-errors="false"
@@ -103,6 +178,14 @@
           {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
           class="product-variant-id"
         >
+        {%- if product.selling_plan_groups.size > 0 -%}
+          <input
+            type="hidden"
+            name="selling_plan"
+            value=""
+            data-subscription-selling-plan-input
+          >
+        {%- endif -%}
         <div class="product-form__buttons">
           <button
             type="submit"
