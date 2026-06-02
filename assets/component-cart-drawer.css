@@ -326,6 +326,19 @@ cart-drawer-items {
   word-break: break-word;
 }
 
+.cart-item__subscription-cadence {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.4rem 0 0;
+  padding: 0.2rem 0.7rem;
+  border-radius: 2rem;
+  background-color: rgba(var(--color-button), 0.1);
+  color: rgb(var(--color-button));
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 .cart-drawer details[open] > summary .icon-caret {
   transform: rotate(180deg);
 }
