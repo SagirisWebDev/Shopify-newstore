@@ -53,8 +53,8 @@
 <div class="subscribe-hero section-{{ section.id }}-hero" data-subscribe-hero>
   <div class="page-width">
     <div class="subscribe-hero__inner">
-      {%- if section.settings.badge_text != blank -%}
-        <span class="subscribe-hero__badge">{{ section.settings.badge_text | escape }}</span>
+      {%- if section.settings.show_badge -%}
+        <span class="subscribe-hero__badge">Save {{ section.settings.discount_percent }}% on every order</span>
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
@@ -109,10 +109,21 @@
   "limit": 1,
   "settings": [
     {
-      "type": "text",
-      "id": "badge_text",
-      "label": "Badge text",
-      "default": "Save 25% on every order"
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show discount badge",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "discount_percent",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Subscription discount",
+      "default": 25,
+      "info": "Must match the discount on your subscription selling plan."
     },
     {
       "type": "text",

@@ -95,6 +95,16 @@ describe('AC — template/page.subscribe.json structure', () => {
     expect(heading.toLowerCase()).toMatch(/subscribe/);
   });
 
+  it('subscribe-hero uses discount_percent (not badge_text) for the discount callout', () => {
+    const heroKey = Object.keys(template.sections).find(
+      (k) => template.sections[k].type === 'subscribe-hero'
+    );
+    const settings = template.sections[heroKey].settings ?? {};
+    expect(settings).not.toHaveProperty('badge_text');
+    expect(settings).toHaveProperty('discount_percent', 25);
+    expect(settings).toHaveProperty('show_badge', true);
+  });
+
   it('CTA link points into the catalog', () => {
     const heroKey = Object.keys(template.sections).find(
       (k) => template.sections[k].type === 'subscribe-hero'
@@ -113,9 +123,18 @@ describe('AC — sections/subscribe-hero.liquid content', () => {
     expect(section).toMatch(/section-subscribe\.css/);
   });
 
-  it('renders the badge setting (discount callout)', () => {
-    expect(section).toMatch(/badge_text/);
+  it('renders the discount badge from discount_percent (not free-text)', () => {
+    expect(section).toMatch(/discount_percent/);
     expect(section).toMatch(/subscribe-hero__badge/);
+    expect(section).not.toMatch(/badge_text/);
+  });
+
+  it('badge is guarded by show_badge so operators can hide it intentionally', () => {
+    expect(section).toMatch(/section\.settings\.show_badge/);
+  });
+
+  it('badge text is computed in Liquid, not stored as user-editable string', () => {
+    expect(section).toMatch(/Save.*discount_percent.*%/);
   });
 
   it('renders the heading setting', () => {
@@ -184,8 +203,12 @@ describe('AC — schema completeness', () => {
     expect(section).toMatch(/"name":\s*"Subscribe: Hero"/);
   });
 
-  it('schema has badge_text setting', () => {
-    expect(section).toMatch(/"id":\s*"badge_text"/);
+  it('schema has show_badge setting', () => {
+    expect(section).toMatch(/"id":\s*"show_badge"/);
+  });
+
+  it('schema has discount_percent range setting', () => {
+    expect(section).toMatch(/"id":\s*"discount_percent"/);
   });
 
   it('schema has cta_link setting', () => {

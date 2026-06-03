@@ -30,7 +30,8 @@
       },
       "block_order": ["benefit_save", "benefit_fresh", "benefit_flexible"],
       "settings": {
-        "badge_text": "Save 25% on every order",
+        "show_badge": true,
+        "discount_percent": 25,
         "heading": "Subscribe & Save 25%",
         "body": "Fresh specialty coffee, roasted to order and delivered on your schedule. Subscribe to any coffee and save 25% on every bag.",
         "cta_label": "Shop Coffees",
