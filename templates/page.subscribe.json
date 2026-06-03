@@ -1,0 +1,68 @@
+{
+  "sections": {
+    "subscribe_hero": {
+      "type": "subscribe-hero",
+      "blocks": {
+        "benefit_save": {
+          "type": "benefit",
+          "settings": {
+            "icon": "💰",
+            "title": "Save 25%",
+            "body": "Automatic discount on every subscription order — no codes needed."
+          }
+        },
+        "benefit_fresh": {
+          "type": "benefit",
+          "settings": {
+            "icon": "🫘",
+            "title": "Roasted Fresh",
+            "body": "Roasted to order and shipped within 48 hours of your delivery date."
+          }
+        },
+        "benefit_flexible": {
+          "type": "benefit",
+          "settings": {
+            "icon": "🔄",
+            "title": "Flexible Cadence",
+            "body": "Monthly delivery — pause, skip, or cancel anytime. No lock-in."
+          }
+        }
+      },
+      "block_order": ["benefit_save", "benefit_fresh", "benefit_flexible"],
+      "settings": {
+        "badge_text": "Save 25% on every order",
+        "heading": "Subscribe & Save 25%",
+        "body": "Fresh specialty coffee, roasted to order and delivered on your schedule. Subscribe to any coffee and save 25% on every bag.",
+        "cta_label": "Shop Coffees",
+        "cta_link": "shopify://collections/all",
+        "show_benefits": true,
+        "hero_padding_top": 80,
+        "hero_padding_bottom": 80,
+        "benefits_padding_top": 60,
+        "benefits_padding_bottom": 60
+      }
+    },
+    "featured_coffees": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Shop Subscribable Coffees",
+        "heading_size": "h2",
+        "collection": "all",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "show_view_all": true,
+        "view_all_style": "link",
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": ["subscribe_hero", "featured_coffees"]
+}

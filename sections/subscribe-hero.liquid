@@ -1,0 +1,245 @@
+{{ 'section-subscribe.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-hero {
+    padding-top: {{ section.settings.hero_padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.hero_padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: {{ settings.brand_color_primary }};
+    color: #F5EFE6;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-hero {
+      padding-top: {{ section.settings.hero_padding_top }}px;
+      padding-bottom: {{ section.settings.hero_padding_bottom }}px;
+    }
+  }
+
+  .section-{{ section.id }}-hero .subscribe-hero__badge {
+    background-color: {{ settings.brand_color_accent }};
+    color: {{ settings.brand_color_primary }};
+  }
+
+  .section-{{ section.id }}-hero .subscribe-hero__body {
+    color: rgba(245, 239, 230, 0.85);
+  }
+
+  .section-{{ section.id }}-hero .button--primary {
+    background-color: {{ settings.brand_color_accent }};
+    color: {{ settings.brand_color_primary }};
+    border-color: {{ settings.brand_color_accent }};
+  }
+
+  .section-{{ section.id }}-hero .button--secondary {
+    color: #F5EFE6;
+    border-color: rgba(245, 239, 230, 0.5);
+  }
+
+  .section-{{ section.id }}-benefits {
+    padding-top: {{ section.settings.benefits_padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.benefits_padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: #F5EFE6;
+    color: {{ settings.brand_color_primary }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-benefits {
+      padding-top: {{ section.settings.benefits_padding_top }}px;
+      padding-bottom: {{ section.settings.benefits_padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="subscribe-hero section-{{ section.id }}-hero" data-subscribe-hero>
+  <div class="page-width">
+    <div class="subscribe-hero__inner">
+      {%- if section.settings.badge_text != blank -%}
+        <span class="subscribe-hero__badge">{{ section.settings.badge_text | escape }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="subscribe-hero__heading h0">{{ section.settings.heading | escape }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <p class="subscribe-hero__body">{{ section.settings.body | escape }}</p>
+      {%- endif -%}
+
+      <div class="subscribe-hero__cta">
+        {%- if section.settings.cta_label != blank -%}
+          <a
+            href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}"
+            class="button button--primary"
+          >
+            {{- section.settings.cta_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.show_benefits and section.blocks.size > 0 -%}
+  <div class="subscribe-benefits section-{{ section.id }}-benefits" data-subscribe-benefits>
+    <div class="page-width">
+      <div class="subscribe-benefits__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'benefit' -%}
+            <div class="subscribe-benefit" {{ block.shopify_attributes }}>
+              {%- if block.settings.icon != blank -%}
+                <span class="subscribe-benefit__icon" aria-hidden="true">
+                  {{- block.settings.icon | escape -}}
+                </span>
+              {%- endif -%}
+              <h3 class="subscribe-benefit__title">{{ block.settings.title | escape }}</h3>
+              <p class="subscribe-benefit__body">{{ block.settings.body | escape }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Subscribe: Hero",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Save 25% on every order"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Subscribe & Save 25%"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "Fresh specialty coffee, roasted to order and delivered on your schedule. Subscribe to any coffee and save 25% on every bag."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Shop Coffees"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefits",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 4,
+      "unit": "px",
+      "label": "Hero padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "hero_padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 4,
+      "unit": "px",
+      "label": "Hero padding bottom",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "benefits_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Benefits padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "benefits_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Benefits padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji)",
+          "default": "☕"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Benefit title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Benefit description."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscribe: Hero",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "💰",
+            "title": "Save 25%",
+            "body": "Automatic discount on every subscription order — no codes needed."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "🫘",
+            "title": "Roasted Fresh",
+            "body": "Roasted to order and shipped within 48 hours of your delivery date."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "🔄",
+            "title": "Flexible Cadence",
+            "body": "Monthly delivery — pause, skip, or cancel anytime. No lock-in."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
