@@ -15,3 +15,28 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm test
+
+  browser-tests:
+    runs-on: ubuntu-latest
+    # Skipped when Shopify secrets are not configured (forks, draft PRs, etc.)
+    if: ${{ vars.SHOPIFY_STORE != '' }}
+    env:
+      SHOPIFY_STORE: ${{ vars.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm install -g @shopify/cli@latest
+      # Start the Shopify dev server in the background.
+      # SHOPIFY_CLI_THEME_TOKEN provides headless auth (no interactive login needed).
+      - name: Start Shopify dev store
+        run: shopify theme dev --store "$SHOPIFY_STORE" --port 9292 &
+      - name: Wait for dev server (port 9292)
+        run: timeout 120 bash -c 'until curl -fs http://127.0.0.1:9292 > /dev/null 2>&1; do sleep 3; done'
+      - name: Run browser tests
+        run: npx playwright test tests/browser/subscribe-to-cart.spec.js
