@@ -1,0 +1,161 @@
+{
+  "sections": {
+    "about_hero": {
+      "type": "about-hero",
+      "settings": {
+        "eyebrow": "Est. 2019 — Portland, Oregon",
+        "heading": "Good coffee shouldn't require a decoder ring.",
+        "body": "I didn't have my first genuinely great cup until I was 32. That wasn't my failure — it was the industry's. We built Common Roast to fix that. Specialty-grade beans, no gatekeeping required.",
+        "founding_detail": "Founded by Maya Chen · Portland, OR · 2019",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "philosophy": {
+      "type": "rich-text",
+      "blocks": {
+        "phil_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "We're not dumbing it down. We're opening the door.",
+            "heading_size": "h2"
+          }
+        },
+        "phil_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>There's a version of specialty coffee that welcomes you in. That tells you what the berry notes actually taste like. That explains what washed versus natural processing means without condescension. Common Roast is that version.</p><p>We source directly, roast to order, and write about coffee the way you'd explain it to a friend — clearly, honestly, without the theater.</p>"
+          }
+        }
+      },
+      "block_order": ["phil_heading", "phil_text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "sourcing": {
+      "type": "image-with-text",
+      "blocks": {
+        "source_caption": {
+          "type": "caption",
+          "settings": {
+            "caption": "Direct Trade · Yirgacheffe, Ethiopia",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "source_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "From Yirgacheffe, with care.",
+            "heading_size": "h2"
+          }
+        },
+        "source_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our longest relationship is with the Kochere Farmers Cooperative in Ethiopia's Yirgacheffe region. We've worked with them since our first year, taking the same lots year after year — not because it's convenient, but because consistency is how trust gets built. You'll find their beans in our Ethiopia Yirgacheffe Natural, year-round.</p>",
+            "text_style": "body"
+          }
+        },
+        "source_button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Shop Ethiopia Yirgacheffe Natural",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": ["source_caption", "source_heading", "source_text", "source_button"],
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-2",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "roasting_approach": {
+      "type": "rich-text",
+      "blocks": {
+        "roast_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Roasted to order. Shipped in 48 hours.",
+            "heading_size": "h2"
+          }
+        },
+        "roast_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Coffee degasses for three to five days after roasting. Most retail bags have been sitting for weeks, sometimes months. We roast every order on the day it ships — which means the coffee arriving at your door is as close to peak flavour as it can be.</p><p>Subscribe and we'll time your roast date to land right as your previous bag runs out. Set it and forget it.</p>"
+          }
+        }
+      },
+      "block_order": ["roast_heading", "roast_text"],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "left",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "team": {
+      "type": "multicolumn",
+      "blocks": {
+        "team_maya": {
+          "type": "column",
+          "settings": {
+            "title": "Maya Chen",
+            "text": "<p><strong>Founder</strong></p><p>Former software product manager who discovered specialty coffee at 32 and never looked back. Handles roasting strategy, sourcing relationships, and writes the tasting notes.</p>"
+          }
+        },
+        "team_sam": {
+          "type": "column",
+          "settings": {
+            "title": "Sam Ortega",
+            "text": "<p><strong>Head Roaster</strong></p><p>Trained at a third-wave roastery in Seattle before joining Common Roast in 2020. Obsessed with the relationship between roast curves and cup clarity.</p>"
+          }
+        },
+        "team_priya": {
+          "type": "column",
+          "settings": {
+            "title": "Priya Mehta",
+            "text": "<p><strong>Operations</strong></p><p>Makes sure the coffee lands on your doorstep when it's supposed to. Also the person who answers your emails.</p>"
+          }
+        }
+      },
+      "block_order": ["team_maya", "team_sam", "team_priya"],
+      "settings": {
+        "title": "The team",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "circle",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 64,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": ["about_hero", "philosophy", "sourcing", "roasting_approach", "team"]
+}

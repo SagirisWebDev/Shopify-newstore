@@ -20,6 +20,18 @@
         "padding_bottom": 36
       }
     },
+    "product-meta": {
+      "type": "product-meta",
+      "settings": {
+        "show_description": true,
+        "show_type": true,
+        "show_collections": true,
+        "show_tags": true,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "coffee-tasting-notes": {
       "type": "coffee-tasting-notes",
       "settings": {
@@ -72,6 +84,7 @@
   "order": [
     "coffee-gallery",
     "coffee-buy-box",
+    "product-meta",
     "coffee-tasting-notes",
     "coffee-brew-recommendations",
     "coffee-origin-story",

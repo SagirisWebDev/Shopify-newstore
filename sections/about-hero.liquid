@@ -1,0 +1,123 @@
+{{ 'section-about.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-hero {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    background-color: {{ settings.brand_color_primary }};
+    color: #F5EFE6;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-hero {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .section-{{ section.id }}-hero .about-hero__heading {
+    color: #F5EFE6;
+  }
+
+  .section-{{ section.id }}-hero .about-hero__eyebrow {
+    color: {{ settings.brand_color_accent }};
+  }
+
+  .section-{{ section.id }}-hero .about-hero__body {
+    color: rgba(245, 239, 230, 0.85);
+  }
+
+  .section-{{ section.id }}-hero .about-hero__founding {
+    color: rgba(245, 239, 230, 0.6);
+  }
+{%- endstyle -%}
+
+<div class="about-hero section-{{ section.id }}-hero" data-about-hero>
+  <div class="page-width">
+    <div class="about-hero__inner">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="about-hero__eyebrow caption-with-letter-spacing">
+          {{- section.settings.eyebrow | escape -}}
+        </p>
+      {%- endif -%}
+
+      {%- if section.settings.heading != blank -%}
+        <h1 class="about-hero__heading h0">{{ section.settings.heading | escape }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.body != blank -%}
+        <p class="about-hero__body">{{ section.settings.body | escape }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.founding_detail != blank -%}
+        <p class="about-hero__founding caption-with-letter-spacing">
+          {{- section.settings.founding_detail | escape -}}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About: Hero",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Est. 2019 — Portland, Oregon"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Good coffee shouldn't require a decoder ring."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "I didn't have my first genuinely great cup until I was 32. That wasn't my failure — it was the industry's. We built Common Roast to fix that. Specialty-grade beans, no gatekeeping required."
+    },
+    {
+      "type": "text",
+      "id": "founding_detail",
+      "label": "Founding detail",
+      "default": "Founded by Maya Chen · Portland, OR · 2019"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 148,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 148,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "About: Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -43,6 +43,112 @@
         "benefits_padding_bottom": 60
       }
     },
+    "how_it_works": {
+      "type": "multicolumn",
+      "blocks": {
+        "step_1": {
+          "type": "column",
+          "settings": {
+            "title": "1. Choose your coffee",
+            "text": "<p>Browse our single-origin catalog. Every coffee includes tasting notes, origin details, and brew recommendations so you can pick with confidence.</p>"
+          }
+        },
+        "step_2": {
+          "type": "column",
+          "settings": {
+            "title": "2. Select Subscribe & Save",
+            "text": "<p>On any product page, toggle from One-time to Subscribe. You'll lock in 25% off every order, automatically.</p>"
+          }
+        },
+        "step_3": {
+          "type": "column",
+          "settings": {
+            "title": "3. We roast to order",
+            "text": "<p>Your coffee is roasted the day it ships and packed within 48 hours of your delivery date. It arrives at peak freshness, every time.</p>"
+          }
+        },
+        "step_4": {
+          "type": "column",
+          "settings": {
+            "title": "4. Manage anytime",
+            "text": "<p>Swap coffees, skip a shipment, or pause — all from your subscriber portal. No lock-in, no phone calls.</p>"
+          }
+        }
+      },
+      "block_order": ["step_1", "step_2", "step_3", "step_4"],
+      "settings": {
+        "title": "How it works",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 60,
+        "padding_bottom": 36
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "faq_cancel": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I cancel anytime?",
+            "icon": "check_mark",
+            "row_content": "<p>Yes. No contracts, no cancellation fees. Log in to your subscriber portal, find your active subscription, and cancel with one click. Any order already processed for that cycle will still ship.</p>"
+          }
+        },
+        "faq_swap": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I swap my coffee?",
+            "icon": "check_mark",
+            "row_content": "<p>Absolutely. Log in to your subscriber portal between shipments and swap to any coffee in our catalog. The change takes effect on your next order.</p>"
+          }
+        },
+        "faq_skip": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I need to skip a delivery?",
+            "icon": "check_mark",
+            "row_content": "<p>Log in to your subscriber portal before your next processing date and skip the shipment. Your subscription resumes automatically the following month — nothing else changes.</p>"
+          }
+        },
+        "faq_freshness": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I know when my coffee was roasted?",
+            "icon": "check_mark",
+            "row_content": "<p>Every bag ships with a roast date on the label. We roast to order, so your bag was roasted within 48 hours of shipping. For subscriptions, we time the roast date to land right as your previous bag runs out.</p>"
+          }
+        },
+        "faq_multiple": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I subscribe to more than one coffee?",
+            "icon": "check_mark",
+            "row_content": "<p>Yes — each coffee is its own independent subscription with its own cadence and bag size. Subscribe to as many as you like.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_cancel", "faq_swap", "faq_skip", "faq_freshness", "faq_multiple"],
+      "settings": {
+        "caption": "",
+        "heading": "Frequently asked questions",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 60
+      }
+    },
     "featured_coffees": {
       "type": "featured-collection",
       "settings": {
@@ -65,5 +171,5 @@
       }
     }
   },
-  "order": ["subscribe_hero", "featured_coffees"]
+  "order": ["subscribe_hero", "how_it_works", "faq", "featured_coffees"]
 }
