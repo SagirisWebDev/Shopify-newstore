@@ -26,5 +26,229 @@
         }
       ]
     }
+  },
+  {
+    "handle": "colombia-huila-washed",
+    "metafields": {
+      "origin_country": "Colombia",
+      "origin_region": "Huila",
+      "producer_farm_name": "Various smallholder farms, Acevedo municipality",
+      "varietal": "Castillo, Caturra",
+      "altitude": "1600–1900 masl",
+      "process": "washed",
+      "roast_level": "medium",
+      "roast_date": "2026-06-02",
+      "tasting_notes": ["caramel", "red apple", "almond"],
+      "brew_recommendations": [
+        {
+          "method": "Pour Over",
+          "description": "Medium grind, 93°C, 1:16 ratio. A clean, balanced cup that shows off the clarity of the wash."
+        },
+        {
+          "method": "Flat White",
+          "description": "Fine grind, 9 bar, double ristretto. The caramel sweetness holds up beautifully under milk."
+        },
+        {
+          "method": "Cold Brew",
+          "description": "Coarse grind, cold water, 12-hour steep. Approachable and smooth straight from the fridge."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "guatemala-antigua-honey",
+    "metafields": {
+      "origin_country": "Guatemala",
+      "origin_region": "Antigua",
+      "producer_farm_name": "Finca La Hermosa",
+      "varietal": "Bourbon, Caturra",
+      "altitude": "1500–1700 masl",
+      "process": "honey",
+      "roast_level": "medium",
+      "roast_date": "2026-06-04",
+      "tasting_notes": ["brown sugar", "peach", "milk chocolate"],
+      "brew_recommendations": [
+        {
+          "method": "Aeropress",
+          "description": "Medium-fine grind, 92°C, 2-minute steep. The honey process sweetness really opens up at this temperature."
+        },
+        {
+          "method": "Pour Over",
+          "description": "Medium grind, 93°C, 1:15 ratio. Slow, even pour over 3 minutes for maximum sweetness."
+        },
+        {
+          "method": "Espresso",
+          "description": "Fine grind, 9 bar, 28-second shot. A naturally sweet, low-acid shot."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "kenya-nyeri-aa-washed",
+    "metafields": {
+      "origin_country": "Kenya",
+      "origin_region": "Nyeri",
+      "producer_farm_name": "Gaturiri Farmers Cooperative",
+      "varietal": "SL28, SL34, Ruiru 11",
+      "altitude": "1700–1900 masl",
+      "process": "washed",
+      "roast_level": "light",
+      "roast_date": "2026-05-30",
+      "tasting_notes": ["blackcurrant", "grapefruit", "brown sugar"],
+      "brew_recommendations": [
+        {
+          "method": "Pour Over",
+          "description": "Medium-fine grind, 95°C, 1:15 ratio. High temperature unlocks the full aromatic range."
+        },
+        {
+          "method": "Aeropress",
+          "description": "Medium grind, 96°C, inverted method, 90-second steep. Concentrates the fruit character without bitterness."
+        },
+        {
+          "method": "Chemex",
+          "description": "Medium-coarse grind, 95°C, 4-minute brew. The thick filter smooths out the acidity for a refined, winey cup."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "brazil-cerrado-natural",
+    "metafields": {
+      "origin_country": "Brazil",
+      "origin_region": "Cerrado Mineiro",
+      "producer_farm_name": "Fazenda Santa Helena",
+      "varietal": "Yellow Bourbon, Catuaí",
+      "altitude": "900–1100 masl",
+      "process": "natural",
+      "roast_level": "dark",
+      "roast_date": "2026-06-01",
+      "tasting_notes": ["dark chocolate", "brown sugar", "cedar"],
+      "brew_recommendations": [
+        {
+          "method": "Espresso",
+          "description": "Fine grind, 9 bar, 25–28 second shot. The dark roast sweetness makes a rich, low-acid espresso."
+        },
+        {
+          "method": "Moka Pot",
+          "description": "Fine-medium grind, medium heat. Pull from the stove the moment the brew starts — keeps it sweet, not bitter."
+        },
+        {
+          "method": "French Press",
+          "description": "Coarse grind, 95°C, 4-minute steep. Full-bodied and chocolatey. Great with or without milk."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "peru-cajamarca-washed",
+    "metafields": {
+      "origin_country": "Peru",
+      "origin_region": "Cajamarca",
+      "producer_farm_name": "CENFROCAFÉ Cooperative",
+      "varietal": "Typica, Bourbon, Caturra",
+      "altitude": "1600–2000 masl",
+      "process": "washed",
+      "roast_level": "light",
+      "roast_date": "2026-06-03",
+      "tasting_notes": ["peach", "vanilla", "milk chocolate"],
+      "brew_recommendations": [
+        {
+          "method": "Pour Over",
+          "description": "Medium-fine grind, 93°C, 1:15 ratio. Gentle and sweet — an easy drinker for any time of day."
+        },
+        {
+          "method": "Chemex",
+          "description": "Medium grind, 94°C, 4-minute brew. The thick filter softens the already-gentle acidity for a smooth, dessert-like cup."
+        },
+        {
+          "method": "Aeropress",
+          "description": "Medium grind, 91°C, 2-minute steep. Lower temperature keeps the peach note front and centre."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "morning-ritual",
+    "metafields": {
+      "origin_country": null,
+      "origin_region": "Brazil, Colombia",
+      "producer_farm_name": null,
+      "varietal": "Catuaí, Castillo, Caturra",
+      "altitude": null,
+      "process": null,
+      "roast_level": "medium",
+      "roast_date": "2026-06-05",
+      "tasting_notes": ["milk chocolate", "caramel", "toasted almond"],
+      "brew_recommendations": [
+        {
+          "method": "Espresso",
+          "description": "Fine grind, 9 bar, 27-second shot. The go-to base for lattes and flat whites — consistent and satisfying."
+        },
+        {
+          "method": "French Press",
+          "description": "Coarse grind, 94°C, 4-minute steep. Full body, no surprises — exactly what you want at 6am."
+        },
+        {
+          "method": "Drip / Batch Brew",
+          "description": "Medium grind, standard 1:15 ratio. Ideal for busy mornings. Holds well in a thermal carafe."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "after-dark",
+    "metafields": {
+      "origin_country": null,
+      "origin_region": "Brazil, Guatemala",
+      "producer_farm_name": null,
+      "varietal": "Catuaí, Bourbon",
+      "altitude": null,
+      "process": null,
+      "roast_level": "dark",
+      "roast_date": "2026-06-05",
+      "tasting_notes": ["dark chocolate", "brown sugar", "smoky cedar"],
+      "brew_recommendations": [
+        {
+          "method": "Espresso",
+          "description": "Fine grind, 9 bar, 25–28 seconds. Cuts through milk without disappearing — designed for this."
+        },
+        {
+          "method": "Moka Pot",
+          "description": "Fine-medium grind, medium heat. Pull from the stove as soon as the brew starts — intense, syrupy, no bitterness."
+        },
+        {
+          "method": "Aeropress with Milk",
+          "description": "Medium-fine grind, 90°C, 90-second steep. Add steamed or cold milk to taste — the cedar note mellows beautifully."
+        }
+      ]
+    }
+  },
+  {
+    "handle": "swiss-water-decaf-colombia",
+    "metafields": {
+      "origin_country": "Colombia",
+      "origin_region": "Huila, Nariño",
+      "producer_farm_name": "Various smallholder farms",
+      "varietal": "Castillo, Colombia",
+      "altitude": "1600–1900 masl",
+      "process": "other",
+      "roast_level": "medium",
+      "roast_date": "2026-06-04",
+      "tasting_notes": ["toffee", "dried cherry", "cocoa"],
+      "brew_recommendations": [
+        {
+          "method": "Pour Over",
+          "description": "Medium-fine grind, 93°C, 1:15 ratio. Indistinguishable from fully caffeinated in a blind tasting."
+        },
+        {
+          "method": "Espresso",
+          "description": "Fine grind, 9 bar, 27-second shot. A rich, low-acid decaf espresso that works equally well as a short black or the base for a latte."
+        },
+        {
+          "method": "French Press",
+          "description": "Coarse grind, 94°C, 4-minute steep. Full-bodied and satisfying — the evening cup that won't keep you up."
+        }
+      ]
+    }
   }
 ]

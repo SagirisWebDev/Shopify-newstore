@@ -13,8 +13,8 @@
  *     form submission payload. This is the same jsdom-in-vitest pattern
  *     used by `src/coffee-card-snapshot.test.js`.
  *
- *   - AC7 is a containment check — Recharge / selling-plan internals must
- *     not leak across other theme files. Asserted via file content scans.
+ *   - AC7 is a containment check — selling-plan internals must not leak
+ *     across other theme files. Asserted via file content scans.
  *
  * All tests below are expected to FAIL before implementation lands.
  */
@@ -32,7 +32,7 @@ const toggleAssetPath = join(root, 'assets/subscription-toggle.js');
 
 // ---------------------------------------------------------------------------
 // Fixture: the markup that coffee-buy-box.liquid is expected to render for a
-// subscription-enabled product. Mirrors the Recharge config documented in
+// subscription-enabled product. Mirrors the selling plan config documented in
 // CONTEXT.md — monthly cadence, 25% off, one-time + subscribe.
 // ---------------------------------------------------------------------------
 const MONTHLY_PLAN_ID = '1234567890';
@@ -192,7 +192,7 @@ describe('AC1 — one-time / subscribe toggle renders on the PDP buy box', () =>
 // ---------------------------------------------------------------------------
 // AC2 — Selecting subscribe reveals the cadence picker
 // ---------------------------------------------------------------------------
-describe('AC2 — selecting subscribe reveals the cadence picker with Recharge options', () => {
+describe('AC2 — selecting subscribe reveals the cadence picker with selling plan options', () => {
   beforeEach(async () => {
     await loadImplementation();
     mount();
@@ -216,8 +216,8 @@ describe('AC2 — selecting subscribe reveals the cadence picker with Recharge o
     expect(cadence.hidden).toBe(true);
   });
 
-  it('cadence options come from the data-selling-plans JSON (Recharge configured plans)', () => {
-    // The monthly cadence radio's value is the Recharge selling plan ID.
+  it('cadence options come from the data-selling-plans JSON', () => {
+    // The monthly cadence radio's value is the selling plan ID.
     const cadenceInput = $('[data-subscription-cadence-input]');
     expect(cadenceInput.value).toBe(MONTHLY_PLAN_ID);
   });
@@ -258,7 +258,7 @@ describe('AC3 — subscription discount % is displayed when subscribe is selecte
 });
 
 // ---------------------------------------------------------------------------
-// AC4 — Add-to-cart with subscribe sends the correct Recharge selling plan ID
+// AC4 — Add-to-cart with subscribe sends the correct selling plan ID
 // ---------------------------------------------------------------------------
 describe('AC4 — submitting with subscribe selected sends the selling_plan id', () => {
   beforeEach(async () => {
@@ -373,9 +373,9 @@ describe('AC6 — toggle state persists across variant changes', () => {
 });
 
 // ---------------------------------------------------------------------------
-// AC7 — Recharge / selling-plan internals encapsulated in a single asset
+// AC7 — selling-plan internals encapsulated in a single asset
 // ---------------------------------------------------------------------------
-describe('AC7 — Recharge internals are encapsulated in subscription-toggle.js', () => {
+describe('AC7 — selling-plan internals are encapsulated in subscription-toggle.js', () => {
   it('the subscription-toggle.js asset exists', () => {
     expect(existsSync(toggleAssetPath)).toBe(true);
   });
@@ -393,17 +393,14 @@ describe('AC7 — Recharge internals are encapsulated in subscription-toggle.js'
     const inlineScripts = buyBox.match(/<script(?![^>]*\bsrc=)[^>]*>[\s\S]*?<\/script>/g) || [];
     inlineScripts.forEach((block) => {
       expect(block).not.toMatch(/selling_plan/);
-      expect(block).not.toMatch(/recharge/i);
     });
   });
 
-  // The single point of containment: search every other JS/Liquid file in the
-  // theme for the string "selling_plan" or "Recharge". The only places it is
-  // allowed to appear are: subscription-toggle.js, cart-rendering files
-  // (which display existing selling plans on already-added line items —
-  // documented allow-list below), and the buy box section's markup for the
-  // <subscription-toggle> element itself.
-  it('no other theme asset (.js) references selling_plan or Recharge', () => {
+  // The single point of containment: search every other JS file in the theme
+  // for the string "selling_plan". The only places it is allowed to appear are:
+  // subscription-toggle.js, cart-rendering files (which display existing selling
+  // plans on already-added line items), and the buy box section markup.
+  it('no other theme asset (.js) references selling_plan', () => {
     const assetsDir = join(root, 'assets');
     const files = readdirSync(assetsDir)
       .filter((f) => extname(f) === '.js')
@@ -412,14 +409,14 @@ describe('AC7 — Recharge internals are encapsulated in subscription-toggle.js'
     const offenders = [];
     files.forEach((f) => {
       const src = readFileSync(join(assetsDir, f), 'utf8');
-      if (/selling_plan|recharge/i.test(src)) {
+      if (/selling_plan/i.test(src)) {
         offenders.push(f);
       }
     });
     expect(offenders).toEqual([]);
   });
 
-  it('no other section/snippet (excluding cart + order display) contains Recharge config strings', () => {
+  it('no other section/snippet (excluding cart + order display) contains selling-plan config attributes', () => {
     // Cart drawer, cart items section, order summary, and cart-notification
     // are allow-listed because they render the selling plan NAME of items
     // that are already in the cart — that is read-only display, not config.
@@ -431,8 +428,6 @@ describe('AC7 — Recharge internals are encapsulated in subscription-toggle.js'
       'sections/cart-notification-product.liquid',
       'sections/coffee-buy-box.liquid',
       'snippets/cart-drawer.liquid',
-      // Account page: portal entry point link + recharge.css stylesheet tag — display/navigation only, no config data
-      'sections/main-account.liquid',
     ]);
 
     const dirs = ['sections', 'snippets'];
@@ -448,10 +443,6 @@ describe('AC7 — Recharge internals are encapsulated in subscription-toggle.js'
           // Look for selling plan config — discount percent, cadence, plan id
           // hardcoded outside the toggle asset.
           if (/data-selling-plans|data-discount-percent|data-subscription-/i.test(src)) {
-            offenders.push(rel);
-          }
-          // Hard-coded "Recharge" branding strings outside the toggle.
-          if (/\brecharge\b/i.test(src)) {
             offenders.push(rel);
           }
         });

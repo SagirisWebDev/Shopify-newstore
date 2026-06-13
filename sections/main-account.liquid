@@ -1,5 +1,4 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
-{{ 'recharge.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -31,7 +30,7 @@
       <div class="account-subscription-portal">
         <h2>Subscriptions</h2>
         <p>Manage your coffee deliveries — swap beans, pause, skip a shipment, update your cadence, address, or payment method.</p>
-        <a href="/tools/recharge" class="button">Manage Subscriptions</a>
+        <a href="/tools/seal-subscriptions" class="button">Manage Subscriptions</a>
       </div>
 
       <h2>{{ 'customer.orders.title' | t }}</h2>

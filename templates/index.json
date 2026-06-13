@@ -21,24 +21,30 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Shop Coffees",
-            "button_link_1": "shopify://collections/all",
+            "button_link_1": "shopify:\/\/collections\/all",
             "button_style_secondary_1": false,
             "button_label_2": "Subscribe & Save 25%",
-            "button_link_2": "shopify://pages/subscribe",
+            "button_link_2": "shopify:\/\/pages\/subscribe",
             "button_style_secondary_2": true
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/common-roast-hero.webp",
         "image_overlay_opacity": 50,
         "image_height": "large",
+        "image_behavior": "none",
         "desktop_content_position": "middle-left",
-        "show_text_box": false,
         "desktop_content_alignment": "left",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-a06bc6c1-4e5e-4394-b040-de50a8d87edd",
         "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
         "show_text_below": false
       }
     },
@@ -49,36 +55,46 @@
           "type": "column",
           "settings": {
             "title": "Specialty-grade, explained",
-            "text": "<p>Every coffee comes with tasting notes, origin details, and brew recommendations written in plain language. No jargon, no judgment.</p>"
+            "text": "<p>Every coffee comes with tasting notes, origin details, and brew recommendations written in plain language. No jargon, no judgment.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "prop_fresh": {
           "type": "column",
           "settings": {
             "title": "Roasted to order",
-            "text": "<p>We roast every bag the day it ships and pack it within 48 hours of your delivery date. Your coffee arrives at peak freshness, not peak shelf life.</p>"
+            "text": "<p>We roast every bag the day it ships and pack it within 48 hours of your delivery date. Your coffee arrives at peak freshness, not peak shelf life.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "prop_subscribe": {
           "type": "column",
           "settings": {
             "title": "Subscribe and save 25%",
-            "text": "<p>Monthly delivery, your schedule. Swap coffees, skip a shipment, or cancel anytime from your subscriber portal — no hoops, no lock-in.</p>",
+            "text": "<p>Monthly delivery, your schedule. Swap coffees, skip a shipment, or cancel anytime from your subscriber portal — no hoops, no lock-in.<\/p>",
             "link_label": "See how it works",
-            "link": "shopify://pages/subscribe"
+            "link": "shopify:\/\/pages\/subscribe"
           }
         }
       },
-      "block_order": ["prop_explained", "prop_fresh", "prop_subscribe"],
+      "block_order": [
+        "prop_explained",
+        "prop_fresh",
+        "prop_subscribe"
+      ],
       "settings": {
         "title": "",
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "adapt",
+        "button_label": "Button label",
+        "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "none",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-0a38e972-9db6-45da-b0b7-6c7ef04b279f",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 60,
@@ -88,20 +104,27 @@
     "featured_coffees": {
       "type": "featured-collection",
       "settings": {
-        "title": "Our Coffees",
-        "heading_size": "h2",
         "collection": "all",
         "products_to_show": 4,
+        "title": "Our Coffees",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
+        "full_width": false,
         "show_view_all": true,
         "view_all_style": "button",
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-a06bc6c1-4e5e-4394-b040-de50a8d87edd",
         "image_ratio": "adapt",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
+        "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -119,28 +142,40 @@
         "cta_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Subscribe to any coffee and save 25% on every order. We roast to order and deliver monthly — skip, pause, or swap anytime.</p>"
+            "text": "<p>Subscribe to any coffee and save 25% on every order. We roast to order and deliver monthly — skip, pause, or swap anytime.<\/p>"
           }
         },
         "cta_button": {
           "type": "button",
           "settings": {
             "button_label": "See how subscriptions work",
-            "button_link": "shopify://pages/subscribe",
-            "button_style_secondary": false
+            "button_link": "shopify:\/\/pages\/subscribe",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
-      "block_order": ["cta_heading", "cta_text", "cta_button"],
+      "block_order": [
+        "cta_heading",
+        "cta_text",
+        "cta_button"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-0a38e972-9db6-45da-b0b7-6c7ef04b279f",
         "full_width": true,
         "padding_top": 64,
         "padding_bottom": 64
       }
     }
   },
-  "order": ["hero", "value_props", "featured_coffees", "subscribe_cta"]
+  "order": [
+    "hero",
+    "value_props",
+    "featured_coffees",
+    "subscribe_cta"
+  ]
 }

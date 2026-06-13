@@ -24,15 +24,18 @@
         "phil_text": {
           "type": "text",
           "settings": {
-            "text": "<p>There's a version of specialty coffee that welcomes you in. That tells you what the berry notes actually taste like. That explains what washed versus natural processing means without condescension. Common Roast is that version.</p><p>We source directly, roast to order, and write about coffee the way you'd explain it to a friend — clearly, honestly, without the theater.</p>"
+            "text": "<p>There's a version of specialty coffee that welcomes you in. That tells you what the berry notes actually taste like. That explains what washed versus natural processing means without condescension. Common Roast is that version.<\/p><p>We source directly, roast to order, and write about coffee the way you'd explain it to a friend — clearly, honestly, without the theater.<\/p>"
           }
         }
       },
-      "block_order": ["phil_heading", "phil_text"],
+      "block_order": [
+        "phil_heading",
+        "phil_text"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-a06bc6c1-4e5e-4394-b040-de50a8d87edd",
         "full_width": true,
         "padding_top": 64,
         "padding_bottom": 64
@@ -59,7 +62,7 @@
         "source_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Our longest relationship is with the Kochere Farmers Cooperative in Ethiopia's Yirgacheffe region. We've worked with them since our first year, taking the same lots year after year — not because it's convenient, but because consistency is how trust gets built. You'll find their beans in our Ethiopia Yirgacheffe Natural, year-round.</p>",
+            "text": "<p>Our longest relationship is with the Kochere Farmers Cooperative in Ethiopia's Yirgacheffe region. We've worked with them since our first year, taking the same lots year after year — not because it's convenient, but because consistency is how trust gets built. You'll find their beans in our Ethiopia Yirgacheffe Natural, year-round.<\/p>",
             "text_style": "body"
           }
         },
@@ -67,13 +70,19 @@
           "type": "button",
           "settings": {
             "button_label": "Shop Ethiopia Yirgacheffe Natural",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify:\/\/collections\/all",
             "button_style_secondary": true
           }
         }
       },
-      "block_order": ["source_caption", "source_heading", "source_text", "source_button"],
+      "block_order": [
+        "source_caption",
+        "source_heading",
+        "source_text",
+        "source_button"
+      ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/about1.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -82,8 +91,8 @@
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
         "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-2",
-        "color_scheme": "scheme-2",
+        "section_color_scheme": "scheme-0a38e972-9db6-45da-b0b7-6c7ef04b279f",
+        "color_scheme": "scheme-0a38e972-9db6-45da-b0b7-6c7ef04b279f",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -101,15 +110,18 @@
         "roast_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Coffee degasses for three to five days after roasting. Most retail bags have been sitting for weeks, sometimes months. We roast every order on the day it ships — which means the coffee arriving at your door is as close to peak flavour as it can be.</p><p>Subscribe and we'll time your roast date to land right as your previous bag runs out. Set it and forget it.</p>"
+            "text": "<p>Coffee degasses for three to five days after roasting. Most retail bags have been sitting for weeks, sometimes months. We roast every order on the day it ships — which means the coffee arriving at your door is as close to peak flavour as it can be.<\/p><p>Subscribe and we'll time your roast date to land right as your previous bag runs out. Set it and forget it.<\/p>"
           }
         }
       },
-      "block_order": ["roast_heading", "roast_text"],
+      "block_order": [
+        "roast_heading",
+        "roast_text"
+      ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "left",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-a06bc6c1-4e5e-4394-b040-de50a8d87edd",
         "full_width": true,
         "padding_top": 64,
         "padding_bottom": 64
@@ -122,34 +134,46 @@
           "type": "column",
           "settings": {
             "title": "Maya Chen",
-            "text": "<p><strong>Founder</strong></p><p>Former software product manager who discovered specialty coffee at 32 and never looked back. Handles roasting strategy, sourcing relationships, and writes the tasting notes.</p>"
+            "text": "<p><strong>Founder<\/strong><\/p><p>Former software product manager who discovered specialty coffee at 32 and never looked back. Handles roasting strategy, sourcing relationships, and writes the tasting notes.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "team_sam": {
           "type": "column",
           "settings": {
             "title": "Sam Ortega",
-            "text": "<p><strong>Head Roaster</strong></p><p>Trained at a third-wave roastery in Seattle before joining Common Roast in 2020. Obsessed with the relationship between roast curves and cup clarity.</p>"
+            "text": "<p><strong>Head Roaster<\/strong><\/p><p>Trained at a third-wave roastery in Seattle before joining Common Roast in 2020. Obsessed with the relationship between roast curves and cup clarity.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "team_priya": {
           "type": "column",
           "settings": {
             "title": "Priya Mehta",
-            "text": "<p><strong>Operations</strong></p><p>Makes sure the coffee lands on your doorstep when it's supposed to. Also the person who answers your emails.</p>"
+            "text": "<p><strong>Operations<\/strong><\/p><p>Makes sure the coffee lands on your doorstep when it's supposed to. Also the person who answers your emails.<\/p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
-      "block_order": ["team_maya", "team_sam", "team_priya"],
+      "block_order": [
+        "team_maya",
+        "team_sam",
+        "team_priya"
+      ],
       "settings": {
         "title": "The team",
         "heading_size": "h2",
         "image_width": "full",
         "image_ratio": "circle",
+        "button_label": "Button label",
+        "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "none",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-0a38e972-9db6-45da-b0b7-6c7ef04b279f",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 64,
@@ -157,5 +181,11 @@
       }
     }
   },
-  "order": ["about_hero", "philosophy", "sourcing", "roasting_approach", "team"]
+  "order": [
+    "about_hero",
+    "philosophy",
+    "sourcing",
+    "roasting_approach",
+    "team"
+  ]
 }
